@@ -21,8 +21,7 @@ import { DatatableRoutingModule } from './datatable-routing.module';
     HttpModule
   ],
   declarations: [
-    DataTableComponent,
-    DataFilterPipe
+
   ]
 })
 export class DatatableInitModule { }

@@ -11,6 +11,7 @@ import { PopoversComponent } from '../../base/popovers.component';
 import { PopoverModule } from 'ngx-bootstrap';
 import {FontAwesomeComponent} from '../../icons/font-awesome.component';
 import {SharedModule} from '../../../shared.module';
+import {BaseModule} from '../../base/base.module';
 
 @NgModule({
   imports: [
@@ -20,9 +21,10 @@ import {SharedModule} from '../../../shared.module';
     AppFooterModule,
     AppSidebarModule,
     PopoverModule.forRoot(),
-    SharedModule
+    SharedModule,
+    BaseModule
   ],
-  declarations: [LoginComponent, PopoversComponent , FontAwesomeComponent],
+  declarations: [LoginComponent],
   bootstrap: [ LoginComponent ]
 })
 export class LoginModule { }

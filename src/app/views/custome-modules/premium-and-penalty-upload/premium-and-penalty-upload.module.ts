@@ -14,7 +14,7 @@ import { BrowserAnimationsModule , NoopAnimationsModule} from '@angular/platform
 import { MatFormFieldModule } from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import { MatSelectModule } from '@angular/material';
-import { MatFileUploadModule } from 'angular-material-fileupload';
+
 import { MatButtonModule, MatIconModule, MatProgressBarModule } from '@angular/material';
 
 @NgModule({
@@ -32,7 +32,6 @@ import { MatButtonModule, MatIconModule, MatProgressBarModule } from '@angular/m
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatFileUploadModule,
     MatButtonModule,
     MatIconModule,
     MatProgressBarModule
