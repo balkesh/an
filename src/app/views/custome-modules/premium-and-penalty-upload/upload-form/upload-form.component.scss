@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+    color: #10253F;
+  }
+  
+  body {
+    background-color: #f1f1f1;
+  }
+  
+  #upForm {
+    background-color: #ffffff;
+    margin: 100px auto;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+    font-family: 'Trebuchet MS';
+  }
+  
+  h1 {
+    text-align: center;
+    font-family: 'Trebuchet MS';
+  }
+  
+  input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    border: 1px solid #aaaaaa;
+    font-family: 'Trebuchet MS';
+  }
+  
+  /* Mark input boxes that gets an error on validation: */
+  input.invalid {
+    background-color: #ffdddd;
+    font-family: 'Trebuchet MS';
+  }
+  
+  /* Hide all steps by default: */
+  .tab {
+    display: none;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    cursor: pointer;
+    font-family: 'Trebuchet MS';
+  }
+  
+  button:hover {
+    opacity: 0.8;
+    font-family: 'Trebuchet MS';
+  }
+  
+  #prevBtn {
+    background-color: #bbbbbb;
+    font-family: 'Trebuchet MS';
+  }
+  
+  /* Make circles that indicate the steps of the form: */
+  .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+  
+  .active {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 1;
+  }
+  
+  /* Mark the steps that are finished and valid: */
+  .step.finish {
+    background-color: #4CAF50;
+  }
+
+  .customeCalendar{
+    margin-left:1048px;
+    margin-top: 20px;
+    background-color: rgb(136, 176, 209);
+    border: 1px solid #10253F;
+  }
+
+  select , input{
+    vertical-align: top;
+  }
+  mat-form-field[hidden] {
+    display: none;
+  }
+ 

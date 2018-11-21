@@ -1,0 +1,226 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="p-5">
+  <div style="background-color:rgba(245,245,245,0.2);" class="card-body">
+    <!-- _________________________________________________________________________________________________FORM   -->
+    <form [formGroup]="formGroup">
+      <!--  <img src="https://cdn2.iconfinder.com/data/icons/form-input-elements/200/input-upload-512.png" alt="formIcon"
+          style="border-radius: 50%;border: 1px solid black;width:150px;height:150px;margin-left:50%;
+          background-color:white;margin-bottom:25px;" /> -->
+      <div class="card-header">
+        <span style="margin-bottom:25px;font-size: 30px;">
+          <i class="fa fa-upload fa-lg mt-4">
+            <strong>Upload Form</strong>
+          </i></span>
+
+      </div>
+      <mat-horizontal-stepper formArrayName="formArray">
+          <ng-template matStepperIcon="edit">
+              <mat-icon>face</mat-icon>
+            </ng-template>
+        <!-- _________________________________________________________________________________________________STEP 0  -->
+        <mat-step formGroupName="0" [stepControl]="formArray.get([0])" style="float:left;">
+          <ng-template matStepLabel>
+            <div class="card-header">
+              <strong>General</strong>
+            </div>
+          </ng-template>
+          <!--  _____________________POOL -->
+          <ng-template matStepLabel>
+            Select pool
+          </ng-template>
+          <mat-form-field style="float:left;clear: left;">
+            <mat-select matNativeControl placeholder="Select pool" #sel1 formControlName="poolIdCtrl" required
+              [(value)]="currentPool" (selectionChange)="this.getRulesForPool();">
+              <mat-option value="{{pool.poolName}}" *ngFor="let pool of pools">{{pool.poolName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- ________________________RULES  -->
+          <ng-template matStepLabel>
+            Select rule set
+          </ng-template>
+          <!--<div>{{ getRulesForPool() }}</div>-->
+          <!-- execute the function -->
+          <mat-form-field style="float:left;clear: left;">
+            <div class="drpDown">
+              <select matNativeControl placeholder="Select rule set" #sel2 formControlName="ruleSetCtrl" required>
+                <option *ngFor="let rule of rules">{{rule}}</option>
+              </select>
+            </div>
+          </mat-form-field>
+          <!-- ________________________DATE  -->
+          <ng-template matStepLabel>
+            Semester
+          </ng-template>
+          <mat-form-field style="float:left;clear: left;" #dateInput [hidden]="defaultIsHidden">
+            <div>
+              <!--  DEFAULT  -->
+              <mat-select matNativeControl placeholder="Select semester" #sel2 formControlName="semesterCtrl" required
+                [disabled]="!customIsHidden">
+                <mat-option value="JAN-JUN">JAN-JUN</mat-option>
+                <mat-option value="JUL-DEC">JUL-DEC</mat-option>
+              </mat-select>
+              <label title="use custome dates" style="margin-left:-850px;margin-top: -225px;">
+                <button class="customeCalendar" (click)="defaultIsHidden=!defaultIsHidden;
+                customIsHidden=!customIsHidden;">
+                  <i class="icons font-2xl d-block cui-calendar"></i>
+                </button>
+              </label>
+            </div>
+          </mat-form-field>
+          <mat-form-field #customeCalendar [hidden]="customIsHidden" style="float:left;clear: left;">
+            <!-- CUSTOM -->
+            <div>
+              <label title="use custome dates">
+                <i class="icons font-2xl d-block cui-calendar"></i>Start
+                <input matInput type="date" formControlName="startDateCtrl" required placeholder="dd/mm/yyyy" />
+              </label>
+              <label title="use custome dates">
+                <i class="icons font-2xl d-block cui-calendar"></i>End
+                <input matInput type="date" formControlName="endDateCtrl" required placeholder="dd/mm/yyyy" />
+              </label>
+              <label title="back to default choices" style="margin-left:-950px;">
+                <button class="customeCalendar" (click)="defaultIsHidden=!defaultIsHidden;customIsHidden=!customIsHidden;">
+                  <i class="icons font-2xl d-block cui-chevron-left"></i>
+                </button>
+              </label>
+            </div>
+          </mat-form-field>
+          <!-- ________________________DESCRIPTION  -->
+          <ng-template matStepLabel>
+            Description
+          </ng-template>
+          <mat-form-field style="float:left;clear: left;width:100%;">
+            <input matInput type="text" style="width: 100%;height: 90px;" formControlName="DescCtrl" required
+              placeholder="example : S1 - rules set : rules1 - Balkers" />
+              <button class="btn btn-dark" style="margin-top:5px;background-color: #10253F;" matStepperNext>Next</button>
+          </mat-form-field>
+        </mat-step>
+
+        <!-- _________________________________________________________________________________________________STEP 1  -->
+
+        <mat-step formGroupName="1" [stepControl]="formArray.get([1])">
+          <ng-template matStepLabel>
+            <div class="card-header">
+              <strong>Consumption pool points data</strong>
+            </div>
+          </ng-template>
+          <div class="card-body">
+            <button class="btn btn-dark" style="background-color:rgba(0,0,0,0);text-align: center;
+            color: #10253F;width:100%;border:1px #10253F dashed "
+              mat-button color="warn" (click)="onClick()">
+              <mat-icon>file_upload</mat-icon>
+              {{text}}
+            </button>
+            <br />
+            <ul>
+              <li *ngFor="let file of files" [@fadeInOut]="file.state">
+                <mat-progress-bar mode="determinate" [value]="file.progress" style="margin-top: 8px;"></mat-progress-bar>
+                <span id="file-label">
+                  {{file.data.name}}
+                  <a title="Retry" (click)="retryFile(file)" *ngIf="file.canRetry">
+                    <mat-icon>refresh</mat-icon>
+                  </a>
+                  <a title="Cancel" (click)="cancelFile(file)" *ngIf="file.canCancel">
+                    <mat-icon>cancel</mat-icon>
+                  </a>
+                </span>
+              </li>
+            </ul>
+            <input type="file" id="fileUpload" name="fileUpload" multiple="multiple" accept="{{accept}}" style="display:none;" />
+            <p style="color: #10253F;" class="alert alert-info">Only .xlsx files can be uploaded</p>
+          </div>
+          <div>
+            <button class="btn btn-dark" style="background-color: #10253F;padding: 3px 3px 3px 3px;margin-left: 2px;"
+              mat-button matStepperPrevious> Back </button>
+            <button class="btn btn-dark" style="background-color: #10253F;padding: 3px 3px 3px 3px;margin-left: 2px;"
+              mat-button matStepperNext> Next </button>
+            <button class="btn btn-dark" style="background-color: #10253F;padding: 3px 3px 3px 3px;margin-left: 2px;"
+              mat-button matStepperNext> Skip </button>
+          </div>
+        </mat-step>
+
+        <!-- _________________________________________________________________________________________________STEP 2  -->
+
+        <mat-step formGroupName="2" [stepControl]="formArray.get([2])">
+          <ng-template matStepLabel>
+            <div class="card-header">
+              <strong>Assessed Consumption Data</strong>
+            </div>
+          </ng-template>
+          <ng-template matStepLabel>Fill out your address</ng-template>
+          <div class="card-body">
+            <button class="btn btn-dark" style="background-color:rgba(0,0,0,0);text-align: center;
+            color: #10253F;width:100%;border:1px #10253F dashed "
+              mat-button color="warn" (click)="onClick()">
+              <mat-icon>file_upload</mat-icon>
+              {{text}}
+            </button>
+            <br />
+            <ul>
+              <li *ngFor="let file of files" [@fadeInOut]="file.state">
+                <mat-progress-bar mode="indeterminate" [value]="file.progress" style="margin-top: 8px;"></mat-progress-bar>
+                <span id="file-label">
+                  {{file.data.name}}
+                  <a title="Retry" (click)="retryFile(file)" *ngIf="file.canRetry">
+                    <mat-icon>refresh</mat-icon>
+                  </a>
+                  <a title="Cancel" (click)="cancelFile(file)" *ngIf="file.canCancel">
+                    <mat-icon>cancel</mat-icon>
+                  </a>
+                </span>
+              </li>
+            </ul>
+            <input type="file" id="fileUpload" name="fileUpload" multiple="multiple" accept="{{accept}}" style="display:none;" />
+            <p style="color: #10253F;" class="alert alert-info">Only .xlsx files can be uploaded</p>
+          </div>
+          <div>
+            <button class="btn btn-dark" style="background-color: #10253F;padding: 3px 3px 3px 3px;margin-left: 2px;"
+              mat-button matStepperPrevious> Back </button>
+            <button class="btn btn-dark" style="background-color: #10253F;padding: 3px 3px 3px 3px;margin-left: 2px;"
+              mat-button matStepperNext> Next </button>
+            <button class="btn btn-dark" style="background-color: #10253F;padding: 3px 3px 3px 3px;margin-left: 2px;"
+              mat-button matStepperNext> Skip </button>
+          </div>
+        </mat-step>
+
+        <!-- _________________________________________________________________________________________________STEP 3  -->
+
+        <mat-step formGroupName="3" [stepControl]="formArray.get([3])">
+          <ng-template matStepLabel>
+            <div class="card-header">
+              <strong>Pool Days</strong>
+            </div>
+          </ng-template>
+          <div class="alert alert-info p-3" style="margin-bottom:5px;">
+            <strong> Pool days extracted from IMOS! You may proceed. :)
+            </strong>
+          </div>
+          <div>
+            <button class="btn btn-dark" style="background-color: #10253F;padding: 3px 3px 3px 3px;margin-left: 2px;"
+              mat-button matStepperPrevious> Back </button>
+            <button class="btn btn-dark" style="background-color: #10253F;padding: 3px 3px 3px 3px;margin-left: 2px;"
+              mat-button matStepperNext> Next </button>
+            <button class="btn btn-dark" style="background-color: #10253F;padding: 3px 3px 3px 3px;margin-left: 2px;"
+              mat-button matStepperNext> Skip </button>
+          </div>
+        </mat-step>
+
+        <!-- _________________________________________________________________________________________________STEP 4  -->
+
+        <mat-step formGroupName="4" [stepControl]="formArray.get([4])">
+          <ng-template matStepLabel>
+            Done
+          </ng-template>
+          <div class="alert alert-success p-3" style="color: #10253F;"><strong>Transaction has been successfuly
+              submited!
+              <br>
+              You may find all the information or complete your upload from the home page</strong>
+          </div>
+          <div>
+            <button class="btn btn-dark" style="background-color: #10253F;">Home Page</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </form>
+  </div>
+</div>

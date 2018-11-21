@@ -1,0 +1,39 @@
+export class ConsumptionPerformanceData {
+
+   id: number;
+	 txnId: number;
+	 vesselId: string;
+	 asConsBallastKN: number;
+	 asConsBallastMiles: number;
+	 asConsBallastHours: number;
+	 asConsBallastFO: number;
+	 asConsBallastStatus: string;
+	 asConsLadenKN: number;
+	 asConsLadenMiles: number;
+	 asConsLadenHours: number;
+	 asConsLadenFO: number;
+	 asConsLadenStatus: string;
+	 asConsLoadingHoursWorking: number;
+	 asConsLoadingFOWorking: number;
+	 asConsLoadingGOWorking: number;
+	 asConsLoadingHoursIdle: number;
+	 asConsLoadingFOIdle: number;
+	 asConsLoadingGOIdle: number;
+	 asConsLoadingStatus: string;
+	 asConsDischargingHoursWorking: number;
+	 asConsDischargingFOWorking: number;
+	 asConsDischargingGOWorking: number;
+	 asConsDischargingHoursIdle: number;
+	 asConsDischargingFOIdle: number;
+	 asConsDischargingGOIdle: number;
+	 asConsDischargingStatus: string;
+	 asConsHeatingHours: number;
+	 asConsHeatingFO: number;
+	 asConsAtSeaHours: number;
+	 asConsAtSeaGO: number;
+	 asConsAtSeaStatus: string;
+	 createdTs: string;
+	 createdBy: number;
+	 updatedTs: string;
+	 updatedBy: number;
+}

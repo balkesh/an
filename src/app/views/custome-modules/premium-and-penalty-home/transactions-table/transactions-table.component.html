@@ -1,0 +1,85 @@
+<table class="table table-dark table-bordered table-hover " [mfData]=" data | dataFilter : filterQuery" #mf="mfDataTable"
+      [mfRowsOnPage]="6" style="color: skyblue;">
+      <caption>List of Transactions</caption>
+      <thead class="thead-light">
+        <tr style="background-color: whitesmoke">
+          <!-- Page Title -->
+          <app-title-pnp-home></app-title-pnp-home>
+          <td colspan="5">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-search"><span class="TrbFont"> All :</span></i></span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search..." />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th style="width: 20%" >
+            <mfDefaultSorter by="Pool">Pool <i class="icons font-2xl d-block  cui-chevron-bottom"></i></mfDefaultSorter>
+          </th>
+          <th style="width: 50%">
+            <mfDefaultSorter by="Start">Start <i class="icons font-2xl d-block cui-chevron-bottom"></i></mfDefaultSorter>
+          </th>
+          <th style="width: 50%">
+              <mfDefaultSorter by="End">End <i class="icons font-2xl d-block cui-chevron-bottom"></i></mfDefaultSorter>
+            </th>
+          <th style="width: 10%">
+            <mfDefaultSorter by="Desc">Desc <i class="icons font-2xl d-block cui-chevron-bottom"></i></mfDefaultSorter>
+          </th>
+          <th style="width: 20%">
+            <mfDefaultSorter by="StatusString">Status <i class="icons font-2xl d-block cui-chevron-bottom"></i></mfDefaultSorter>
+          </th>
+          <th style="width: 20%">
+            <mfDefaultSorter by="Details">Details</mfDefaultSorter>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let item of mf.data">
+          <tr>
+            <td>{{item.Pool}}</td>
+            <td>{{item.Start}}</td>
+            <td>{{item.End}}</td>
+            <td>{{item.Desc}}</td>
+            <td>{{item.StatusString}}</td>
+            <td><button (click)="details.hidden=!details.hidden;" class="btn btn-primary"><i class="icons font-2xl d-block cui-settings"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:rgb(151, 161, 163);color:black;" class="Details" #details [hidden]="true"
+              colspan="5">
+              <table>
+              <thead>
+                <th>Tnx Id</th>
+                <th>Rules</th>
+                <th>Step 1</th>
+                <th>Step 2</th>
+                <th>Step 3</th>
+                <th>Step 4</th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> {{item.TxnId}} </td>
+                  <td> {{item.RulesSet}} </td>
+                  <td> by {{item.Steps[0].By}} ({{item.Steps[0].At}}) </td>
+                  <td> by {{item.Steps[1].By}} ({{item.Steps[1].At}}) </td>
+                  <td> by {{item.Steps[2].By}} ({{item.Steps[2].At}}) </td>
+                  <td> by {{item.Steps[3].By}} ({{item.Steps[3].At}}) </td>
+                  <td [hidden]="true">{{defineBtnValue(item.StatusString)}}</td> <!-- So function is executed -->
+                  <td><button class="btn btn-dark" (click) = "fetchPerformanceData(item.TxnId)"> {{ btnValue }}  </button></td>
+                </tr>
+              </tbody>
+              </table>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+      <tfoot>
+        <td colspan="4">
+          <mfBootstrapPaginator style="background-color: pagination-bg" [rowsOnPageSet]="[6,12,60]"></mfBootstrapPaginator>
+        </td>
+      </tfoot>
+    </table>

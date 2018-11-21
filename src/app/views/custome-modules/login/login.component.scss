@@ -1,0 +1,50 @@
+/*{
+  font-family: 'Trebuchet MS';
+}*/
+.logInCard{
+  background-color:rgba(27,34,43, 0.8);
+  margin-top:150px;
+  border-radius:25px;
+  position: relative;
+  border:1px solid rgba(32,168,216, 0.3);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
+}
+
+.app-popovers{
+  background-color:rgba(27,34,43, 1);
+  border:1px solid rgba(32,168,216, 0.3);
+  width:30px;
+  height:30px;
+  position: absolute;
+  right: 30px;
+}
+
+.help{
+  font-size:20px;
+  position: absolute;
+  top: calc(100% - 45px);
+  right: 10px;
+  color:white !important;
+}
+
+.popOverTml{
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  display: flex;
+  align-items: center;
+  float:left;
+  width: 50px;
+  height: 70px;
+  padding: 3px 3px 3px 3px;
+}
+
+.errorP{
+  font-size:15px;
+}
+
+.wrongPass{
+  right:15px;
+  height:80px;
+}
+

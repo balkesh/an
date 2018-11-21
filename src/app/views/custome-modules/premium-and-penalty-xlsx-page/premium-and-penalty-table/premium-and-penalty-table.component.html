@@ -1,0 +1,1173 @@
+<!-- Nav tabs -->
+<div style="background-color:rgba(245,245,245,0.1)">
+  <tabset>
+    <tab heading="Pool Days">
+      <table class="table table-dark table-bordered table-hover " [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="6" style="color: skyblue;">
+        <thead class="thead-light">
+          <tr class="headXSheet">
+            <td colspan="10"> {{poolName}} - 2018 - 1 Premium & Penalty Calculation</td>
+          </tr>
+          <tr class="headTable">
+            <td colspan="10">
+              <h4>Pool Days</h4>
+            </td>
+            <!--
+              <td>
+                <i class="icons font-2xl d-block cui-calendar"><span>To : <input type="date" /></span></i>
+                <i class="icons font-2xl d-block cui-calendar"><span>From : <input type="date" /></span></i>
+            </td>
+             -->
+          </tr>
+          <tr>
+            <!-- 
+              <td colspan="10">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"><span class="TrbFont"> All :</span></i></span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search..." />
+              </div>
+            </td>
+            -->
+          </tr>
+          <tr>
+            <th rowspan="3">
+              <mfDefaultSorter by="vesselName">Vessel
+              </mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Entry Into The Pool</mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Exit From The Pool</mfDefaultSorter>
+            </th>
+            <th colspan="7" style="text-align: center;"> 2018 - 1</th>
+          </tr>
+          <tr>
+            <th>
+              <mfDefaultSorter by="">January </mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="">February </mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="">March </mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="">April </mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="">May </mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="">June</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="poolDays">Total</mfDefaultSorter>
+            </th>
+          </tr>
+          <tr>
+            <th colspan="7" style="text-align: center;">Days</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of mf.data">
+            <tr>
+              <td>{{item.vesselName}}</td>
+              <td>{{item.entryDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.exitDate | date:'yyyy-MM-dd'}}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{{item.poolDays | number:'1.0-1'}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <td colspan="10">
+            <mfBootstrapPaginator style="background-color: pagination-bg" [rowsOnPageSet]="[6,12,60]"></mfBootstrapPaginator>
+          </td>
+        </tfoot>
+      </table>
+    </tab>
+
+
+
+
+
+    <!-- _________________________________________________________________TAB 2  -->
+    <tab heading="Consumption for Pool Points">
+      <table class="table table-dark table-bordered table-hover " [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="6" style="color: skyblue;">
+        <thead class="thead-light">
+          <tr class="headXSheet">
+            <td colspan="19"> {{poolName}} - 2018 - 1 Premium & Penalty Calculation</td>
+          </tr>
+          <tr class="headTable">
+            <td colspan="19">
+              <h4>Consumption For Pool Points</h4>
+            </td>
+            <!--
+              <td>
+                <i class="icons font-2xl d-block cui-calendar"><span>To : <input type="date" /></span></i>
+                <i class="icons font-2xl d-block cui-calendar"><span>From : <input type="date" /></span></i>
+            </td>
+             -->
+          </tr>
+          <tr>
+            <!--
+              <td colspan="19">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"><span class="TrbFont"> All :</span></i></span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search..." />
+              </div>
+            </td>
+            -->
+          </tr>
+          <tr>
+            <th rowspan="3">
+              <mfDefaultSorter by="vesselName">Vessel
+              </mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Entry Into The Pool</mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Exit From The Pool </mfDefaultSorter>
+            </th>
+          </tr>
+          <tr>
+            <th colspan="3" style="text-align: center;">Ballast(Per Day)</th>
+            <th rowspan="3" style="text-align: center;">Assessment Status</th>
+            <th colspan="3" style="text-align: center;">Laden(Per Day)</th>
+            <th rowspan="3" style="text-align: center;">Assessment Status</th>
+            <th colspan="2" style="text-align: center;">Loading</th>
+            <th rowspan="3" style="text-align: center;">Assessment Status</th>
+            <th colspan="2" style="text-align: center;">Discharging</th>
+            <th rowspan="3" style="text-align: center;">Assessment Status</th>
+            <th style="text-align: center;">At Sea</th>
+            <th rowspan="3" style="text-align: center;">Assessment Status</th>
+          </tr>
+          <tr>
+            <th colspan="1" rowspan="1">KN</th>
+            <th colspan="1" rowspan="1">ME</th>
+            <th colspan="1" rowspan="1">AUX</th>
+            <th colspan="1" rowspan="1">KN</th>
+            <th colspan="1" rowspan="1">ME</th>
+            <th colspan="1" rowspan="1">AUX</th>
+            <th colspan="1" rowspan="1">FO</th>
+            <th colspan="1" rowspan="1">MGO</th>
+            <th colspan="1" rowspan="1">FO</th>
+            <th colspan="1" rowspan="1">MGO</th>
+            <th colspan="1" rowspan="1">MGO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of mf.data">
+            <tr>
+              <td>{{item.vesselName}}</td>
+              <td>{{item.entryDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.exitDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.consPPS_BallastKN | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_BallastME | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_BallastAUX | number:'1.0-1'}}</td>
+              <td>{{item.asCons_BallastAssessmentStatus}}</td>
+              <td>{{item.consPPS_LadenKN | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_LadenME | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_LadenAUX | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_LadenAssessmentStatus}}</td>
+              <td>{{item.consPPS_LoadingFO | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_LoadingGO | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_LoadingAssessmentStatus}}</td>
+              <td>{{item.consPPS_DischargingFO | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_DischargingGO | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_DischargingAssessmentStatus}}</td>
+              <td>{{item.consPPS_AtSeaGO | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_AtSeaAssessmentStatus}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <td colspan="19">
+            <mfBootstrapPaginator style="background-color: pagination-bg" [rowsOnPageSet]="[6,12,60]"></mfBootstrapPaginator>
+          </td>
+        </tfoot>
+      </table>
+    </tab>
+
+
+
+
+    <!-- _________________________________________________________________TAB 3  -->
+    <tab heading="Assessed Consumption for Pool Points">
+      <table class="table table-dark table-bordered table-hover " [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="6" style="color: skyblue;">
+        <thead class="thead-light">
+          <tr class="headXSheet">
+            <td colspan="24"> {{poolName}} - 2018 - 1 Premium & Penalty Calculation</td>
+          </tr>
+          <tr class="headTable">
+            <td colspan="24">
+              <h4>Assessed Consumption for Pool Points</h4>
+            </td>
+            <!--
+              <td>
+                <i class="icons font-2xl d-block cui-calendar"><span>To : <input type="date" /></span></i>
+                <i class="icons font-2xl d-block cui-calendar"><span>From : <input type="date" /></span></i>
+            </td>
+             -->
+          </tr>
+          <tr>
+            <!--
+              <td colspan="24">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"><span class="TrbFont"> All :</span></i></span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search..." />
+              </div>
+            </td>
+            -->
+          </tr>
+          <tr>
+            <th rowspan="3">
+              <mfDefaultSorter by="vesselName">Vessel
+              </mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Entry Into The Pool </mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Exit From The Pool </mfDefaultSorter>
+            </th>
+          </tr>
+          <tr>
+            <th colspan="4" style="text-align: center;">Ballast</th>
+            <th rowspan="3" style="text-align: center;">Assessment Status</th>
+            <th colspan="4" style="text-align: center;">Laden</th>
+            <th rowspan="3" style="text-align: center;">Assessment Status</th>
+            <th colspan="3" style="text-align: center;">Loading</th>
+            <th rowspan="3" style="text-align: center;">Assessment Status</th>
+            <th colspan="3" style="text-align: center;">Discharging</th>
+            <th rowspan="3" style="text-align: center;">Assessment Status</th>
+            <th colspan="2" style="text-align: center;">At Sea</th>
+            <th rowspan="3" style="text-align: center;">Assessment Status</th>
+          </tr>
+          <tr>
+            <th colspan="1" rowspan="1">KN</th>
+            <th colspan="1" rowspan="1">Miles</th>
+            <th colspan="1" rowspan="1">Hours</th>
+            <th colspan="1" rowspan="1">FO</th>
+            <th colspan="1" rowspan="1">KN</th>
+            <th colspan="1" rowspan="1">Miles</th>
+            <th colspan="1" rowspan="1">Hours</th>
+            <th colspan="1" rowspan="1">FO</th>
+            <th colspan="1" rowspan="1">Hours</th>
+            <th colspan="1" rowspan="1">FO</th>
+            <th colspan="1" rowspan="1">MGO</th>
+            <th colspan="1" rowspan="1">Hours</th>
+            <th colspan="1" rowspan="1">FO</th>
+            <th colspan="1" rowspan="1">MGO</th>
+            <th colspan="1" rowspan="1">Hours</th>
+            <th colspan="1" rowspan="1">MGO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of mf.data">
+            <tr>
+              <td>{{item.vesselName}}</td>
+              <td>{{item.entryDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.exitDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.asCons_BallastKN | number:'1.0-1' }}</td>
+              <td>{{item.asCons_BallastMiles | number:'1.0-1'}}</td>
+              <td>{{item.asCons_BallastHours | number:'1.0-1'}}</td>
+              <td>{{item.asCons_BallastFO | number: '1.0-1'}}</td>
+              <td>{{item.asCons_BallastAssessmentStatus}}</td>
+              <td>{{item.asCons_LadenKN | number:'1.0-1'}}</td>
+              <td>{{item.asCons_LadenMiles | number:'1.0-1'}}</td>
+              <td>{{item.asCons_LadenHours | number:'1.0-1'}}</td>
+              <td>{{item.asCons_LadenFO | number:'1.0-1'}}</td>
+              <td>{{item.asCons_LadenAssessmentStatus}}</td>
+              <td>{{item.asCons_LoadingHours | number:'1.0-1'}}</td>
+              <td>{{item.asCons_LoadingFO | number:'1.0-1'}}</td>
+              <td>{{item.asCons_LoadingGO | number:'1.0-1'}}</td>
+              <td>{{item.asCons_LoadingAssessmentStatus}}</td>
+              <td>{{item.asCons_DischargingHours | number:'1.0-1'}}</td>
+              <td>{{item.asCons_DischargingFO | number:'1.0-1'}}</td>
+              <td>{{item.asCons_DischargingGO | number:'1.0-1'}}</td>
+              <td>{{item.asCons_DischargingAssessmentStatus}}</td>
+              <td>{{item.asCons_AtSeaHours | number:'1.0-1'}}</td>
+              <td>{{item.asCons_AtSeaGO | number:'1.0-1'}}</td>
+              <td>{{item.asCons_AtSeaAssessmentStatus}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <td colspan="24">
+            <mfBootstrapPaginator style="background-color: pagination-bg" [rowsOnPageSet]="[6,12,60]"></mfBootstrapPaginator>
+          </td>
+        </tfoot>
+      </table>
+    </tab>
+
+
+
+
+    <!-- _________________________________________________________________TAB 4  -->
+    <tab heading="Laden Time & Fuel Oil">
+      <table class="table table-dark table-bordered table-hover " [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="6" style="color: skyblue;">
+        <thead class="thead-light">
+          <tr class="headXSheet">
+            <td colspan="22"> {{poolName}} - 2018 - 1 Premium & Penalty Calculation</td>
+          </tr>
+          <tr class="headTable">
+            <td colspan="22">
+              <h4>Laden Fuel Oil</h4>
+            </td>
+            <!--
+              <td>
+                <i class="icons font-2xl d-block cui-calendar"><span>To : <input type="date" /></span></i>
+                <i class="icons font-2xl d-block cui-calendar"><span>From : <input type="date" /></span></i>
+            </td>
+             -->
+          </tr>
+          <tr>
+           <!--
+              <td colspan="22">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"><span class="TrbFont"> All :</span></i></span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search..." />
+              </div>
+            </td>
+           -->
+          </tr>
+          <tr>
+            <th rowspan="3">
+              <mfDefaultSorter by="vesselName">Vessel
+              </mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Entry Into The Pool</mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Exit From The Pool</mfDefaultSorter>
+            </th>
+            <th colspan="4" rowspan="2" style="text-align: center;">Laden</th>
+            <th rowspan="2" colspan="2" style="text-align: center;">Pool Points Hourly Consumption</th>
+            <th colspan="8" rowspan="1" style="text-align: center;">Allowences</th>
+            <th rowspan="2" colspan="2" style="text-align: center;">Differences</th>
+            <th rowspan="3" style="text-align: center;">Assessment Status</th>
+            <th rowspan="2" colspan="2" style="text-align: center;">To be used</th>
+          </tr>
+          <tr>
+            <th colspan="2" rowspan="1">Speed</th>
+            <th colspan="2" rowspan="1">Consumption</th>
+            <th colspan="2" rowspan="1">Hours</th>
+            <th colspan="2" rowspan="1">FO</th>
+          </tr>
+          <tr>
+            <th colspan="1" rowspan="1">Speed</th>
+            <th colspan="1" rowspan="1">Miles</th>
+            <th colspan="1" rowspan="1">Hours</th>
+            <th colspan="1" rowspan="1">Total FO</th>
+            <th colspan="1" rowspan="1">Speed</th>
+            <th colspan="1" rowspan="1">FO</th>
+            <th>+ 0.5 KTS</th>
+            <th>- 0.5 KTS</th>
+            <th>+ 5%</th>
+            <th>- 5%</th>
+            <th>MIN</th>
+            <th>MAX</th>
+            <th>MIN</th>
+            <th>MAX</th>
+            <th>Hours</th>
+            <th>FO</th>
+            <th>Days</th>
+            <th>FO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of mf.data">
+            <tr>
+              <td>{{item.vesselName}}</td>
+              <td>{{item.entryDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.exitDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.asCons_LadenKN | number:'1.0-1' }}</td>
+              <td>{{item.asCons_LadenMiles | number:'1.0-1'}}</td>
+              <td>{{item.asCons_LadenHours | number:'1.0-1'}}</td>
+              <td>{{item.asCons_LadenFO | number: '1.0-1'}}</td>
+              <td>{{item.consPPS_LadenKN | number: '1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_HourlyConsumptionFO | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_SpeedAllowancePlus | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_SpeedAllowanceMinus | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_ConsumptionAllowancePlus | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_ConsumptionAllowanceMinus | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_MinHoursAllowance | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_MaxHoursAllowance | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_MinFOAllowance | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_MaxFOAllowance | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_HoursDiff | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_DiffFO | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_LadenAssessmentStatus }}</td>
+              <td>{{item.ladenTimeFO_DiffDaysToBeUsed | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_DiffFOToBeUsed | number:'1.0-1'}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <td colspan="22">
+            <mfBootstrapPaginator style="background-color: pagination-bg" [rowsOnPageSet]="[6,12,60]"></mfBootstrapPaginator>
+          </td>
+        </tfoot>
+      </table>
+    </tab>
+
+
+
+
+
+
+    <!-- _________________________________________________________________TAB 5  -->
+    <tab heading="Ballast Time & Fuel Oil">
+      <table class="table table-dark table-bordered table-hover " [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="6" style="color: skyblue;">
+        <thead class="thead-light">
+          <tr class="headXSheet">
+            <td colspan="22"> {{poolName}} - 2018 - 1 Premium & Penalty Calculation</td>
+          </tr>
+          <tr class="headTable">
+            <td colspan="22">
+              <h4>Ballast Fuel Oil</h4>
+            </td>
+            <!--
+              <td>
+                <i class="icons font-2xl d-block cui-calendar"><span>To : <input type="date" /></span></i>
+                <i class="icons font-2xl d-block cui-calendar"><span>From : <input type="date" /></span></i>
+            </td>
+             -->
+          </tr>
+          <tr>
+           <!--
+              <td colspan="22">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"><span class="TrbFont"> All :</span></i></span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search..." />
+              </div>
+            </td>
+           -->
+          </tr>
+          <tr>
+            <th rowspan="3">
+              <mfDefaultSorter by="vesselName">Vessel
+              </mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Entry Into The Pool</mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Exit From The Pool</mfDefaultSorter>
+            </th>
+            <th colspan="4" rowspan="2" style="text-align: center;">Ballast</th>
+            <th rowspan="2" colspan="2" style="text-align: center;">Pool Points Hourly Consumption</th>
+            <th colspan="8" rowspan="1" style="text-align: center;">Allowences</th>
+            <th rowspan="2" colspan="2" style="text-align: center;">Differences</th>
+            <th rowspan="3" style="text-align: center;">Assessment Status</th>
+            <th rowspan="2" colspan="2" style="text-align: center;">To be used</th>
+          </tr>
+          <tr>
+            <th colspan="2" rowspan="1">Speed</th>
+            <th colspan="2" rowspan="1">Consumption</th>
+            <th colspan="2" rowspan="1">Hours</th>
+            <th colspan="2" rowspan="1">FO</th>
+          </tr>
+          <tr>
+            <th colspan="1" rowspan="1">Speed</th>
+            <th colspan="1" rowspan="1">Miles</th>
+            <th colspan="1" rowspan="1">Hours</th>
+            <th colspan="1" rowspan="1">Total FO</th>
+            <th colspan="1" rowspan="1">Speed</th>
+            <th colspan="1" rowspan="1">FO</th>
+            <th>+ 0.5 KTS</th>
+            <th>- 0.5 KTS</th>
+            <th>+ 5%</th>
+            <th>- 5%</th>
+            <th>MIN</th>
+            <th>MAX</th>
+            <th>MIN</th>
+            <th>MAX</th>
+            <th>Hours</th>
+            <th>FO</th>
+            <th>Days</th>
+            <th>FO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of mf.data">
+            <tr>
+              <td>{{item.vesselName}}</td>
+              <td>{{item.entryDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.exitDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.asCons_BallastKN | number:'1.0-1' }}</td>
+              <td>{{item.asCons_BallastMiles | number:'1.0-1'}}</td>
+              <td>{{item.asCons_BallastHours | number:'1.0-1'}}</td>
+              <td>{{item.asCons_BallastFO | number: '1.0-1'}}</td>
+              <td>{{item.consPPS_BallastKN | number: '1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_PoolPointHourlyFO | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_SpeedAllowancePlus | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_SpeedAllowanceMinus | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_ConsumptionAllowancePlus | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_ConsumptionAllowanceMinus | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_MinHoursAllowance | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_MaxHoursAllowance | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_MinFOAllowance | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_MaxFOAllowance | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_HoursDiff | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_DiffFO | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_BallastAssessmentStatus }}</td>
+              <td>{{item.ballastTimeFO_DiffDaysToBeUsed | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_DiffFOToBeUsed | number:'1.0-1'}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <td colspan="22">
+            <mfBootstrapPaginator style="background-color: pagination-bg" [rowsOnPageSet]="[6,12,60]"></mfBootstrapPaginator>
+          </td>
+        </tfoot>
+      </table>
+    </tab>
+
+
+
+
+
+
+
+    <!-- _________________________________________________________________TAB 6 -->
+    <tab heading="Port Fuel Oil">
+      <table class="table table-dark table-bordered table-hover " [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="6" style="color: skyblue;">
+        <thead class="thead-light">
+          <tr class="headXSheet">
+            <td colspan="24"> {{poolName}} - 2018 - 1 Premium & Penalty Calculation</td>
+          </tr>
+          <tr class="headTable">
+            <td colspan="24">
+              <h4>Port (Loading/Discharging) Fuel Oil</h4>
+            </td>
+            <!--
+              <td>
+                <i class="icons font-2xl d-block cui-calendar"><span>To : <input type="date" /></span></i>
+                <i class="icons font-2xl d-block cui-calendar"><span>From : <input type="date" /></span></i>
+            </td>
+             -->
+          </tr>
+          <tr>
+           <!--
+              <td colspan="24">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"><span class="TrbFont"> All :</span></i></span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search..." />
+              </div>
+            </td>
+           -->
+          </tr>
+          <tr>
+            <th rowspan="3">
+              <mfDefaultSorter by="vesselName">Vessel
+              </mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Entry Into The Pool</mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Exit From The Pool</mfDefaultSorter>
+            </th>
+            <th colspan="10" style="text-align: center;">Loading</th>
+            <th colspan="10" style="text-align: center;">Discharging</th>
+          </tr>
+          <tr>
+            <th colspan="2">Actual</th>
+            <th>PPS</th>
+            <th colspan="4">Allowence</th>
+            <th rowspan="2">Difference</th>
+            <th rowspan="2">Assessment Status</th>
+            <th rowspan="2">To be Used</th>
+            <th colspan="2">Actual</th>
+            <th>PPS</th>
+            <th colspan="4">Allowence</th>
+            <th rowspan="2">Difference</th>
+            <th rowspan="2">Assessment Status</th>
+            <th rowspan="2">To be Used</th>
+          </tr>
+          <tr>
+            <th colspan="1" rowspan="1">Hours</th>
+            <th colspan="1" rowspan="1">FO</th>
+            <th colspan="1" rowspan="1">FO/HOUR</th>
+            <th colspan="1" rowspan="1">+ 5%</th>
+            <th colspan="1" rowspan="1">- 5%</th>
+            <th colspan="1" rowspan="1">MIN</th>
+            <th colspan="1" rowspan="1">MAX</th>
+            <th colspan="1" rowspan="1">Hours</th>
+            <th colspan="1" rowspan="1">FO</th>
+            <th colspan="1" rowspan="1">FO/HOUR</th>
+            <th colspan="1" rowspan="1">+ 5%</th>
+            <th colspan="1" rowspan="1">- 5%</th>
+            <th colspan="1" rowspan="1">MIN</th>
+            <th colspan="1" rowspan="1">MAX</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of mf.data">
+            <tr>
+              <td>{{item.vesselName}}</td>
+              <td>{{item.entryDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.exitDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.asCons_LoadingHours | number:'1.0-1' }}</td>
+              <td>{{item.asCons_LoadingFO | number:'1.0-1'}}</td>
+              <td>{{item.portFO_LoadingHourlyFOPPS | number:'1.0-1'}}</td>
+              <td>{{item.portFO_LoadingFOAllowancePlus | number: '1.0-1'}}</td>
+              <td>{{item.portFO_LoadingFOAllowanceMinus | number:'1.0-1'}}</td>
+              <td>{{item.portFO_MinLoadingFOAllowance | number:'1.0-1'}}</td>
+              <td>{{item.portFO_MaxLoadingFOAllowance | number:'1.0-1'}}</td>
+              <td>{{item.portFO_LoadingFODiff | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_LoadingAssessmentStatus}}</td>
+              <td>{{item.portFO_LoadingFODiffToBeUsed | number:'1.0-1'}}</td>
+              <td>{{item.asCons_DischargingHours | number:'1.0-1'}}</td>
+              <td>{{item.asCons_DischargingFO | number:'1.0-1'}}</td>
+              <td>{{item.portFO_DischargingHourlyFOPPS | number:'1.0-1'}}</td>
+              <td>{{item.portFO_DischargingFOAllowancePlus| number:'1.0-1'}}</td>
+              <td>{{item.portFO_DischargingFOAllowanceMinus | number:'1.0-1'}}</td>
+              <td>{{item.portFO_MinDischargingFOAllowance | number:'1.0-1'}}</td>
+              <td>{{item.portFO_MaxDischargingFOAllowance | number:'1.0-1'}}</td>
+              <td>{{item.portFO_DischargingFODiff | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_DischargingAssessmentStatus}}</td>
+              <td>{{item.portFO_DischargingFODiffToBeUsed | number:'1.0-1'}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <td colspan="24">
+            <mfBootstrapPaginator style="background-color: pagination-bg" [rowsOnPageSet]="[6,12,60]"></mfBootstrapPaginator>
+          </td>
+        </tfoot>
+      </table>
+    </tab>
+
+
+
+    <!--______________________________________________________________TAB 7 -->
+    <tab heading="Port Gas Oil">
+      <table class="table table-dark table-bordered table-hover " [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="6" style="color: skyblue;">
+        <thead class="thead-light">
+          <tr class="headXSheet">
+            <td colspan="23"> {{poolName}} - 2018 - 1 Premium & Penalty Calculation</td>
+          </tr>
+          <tr class="headTable">
+            <td colspan="23">
+              <h4>Port MGO</h4>
+            </td>
+            <!--
+              <td>
+                <i class="icons font-2xl d-block cui-calendar"><span>To : <input type="date" /></span></i>
+                <i class="icons font-2xl d-block cui-calendar"><span>From : <input type="date" /></span></i>
+            </td>
+             -->
+          </tr>
+          <tr>
+            <!--
+              <td colspan="23">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"><span class="TrbFont"> All :</span></i></span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search..." />
+              </div>
+            </td>
+            -->
+          </tr>
+          <tr>
+            <th rowspan="3">
+              <mfDefaultSorter by="vesselName">Vessel
+              </mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Entry Into The Pool</mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Exit From The Pool</mfDefaultSorter>
+            </th>
+            <th colspan="10" style="text-align: center;">Loading</th>
+            <th colspan="10" style="text-align: center;">Discharging</th>
+          </tr>
+          <tr>
+            <th colspan="2">Actual</th>
+            <th>PPS</th>
+            <th colspan="4">Allowence</th>
+            <th rowspan="2">Difference</th>
+            <th rowspan="2">Assessment Status</th>
+            <th rowspan="2">To be Used</th>
+            <th colspan="2">Actual</th>
+            <th>PPS</th>
+            <th colspan="4">Allowence</th>
+            <th rowspan="2">Difference</th>
+            <th rowspan="2">Assessment Status</th>
+            <th rowspan="2">To be Used</th>
+          </tr>
+          <tr>
+            <th>Hours</th>
+            <th>GO</th>
+            <th>GO/HOUR</th>
+            <th>+ 5%</th>
+            <th>- 5%</th>
+            <th>MIN</th>
+            <th>MAX</th>
+            <th>Hours</th>
+            <th>GO</th>
+            <th>FO/HOUR</th>
+            <th>+ 5%</th>
+            <th>- 5%</th>
+            <th>MIN</th>
+            <th>MAX</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of mf.data">
+            <tr>
+              <td>{{item.vesselName}}</td>
+              <td>{{item.entryDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.exitDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.asCons_BallastKN | number:'1.0-1' }}</td>
+              <td>{{item.asCons_BallastMiles | number:'1.0-1'}}</td>
+              <td>{{item.asCons_BallastHours | number:'1.0-1'}}</td>
+              <td>{{item.asCons_BallastFO | number: '1.0-1'}}</td>
+              <td>{{item.consPPS_BallastKN | number: '1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_PoolPointHourlyFO | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_SpeedAllowancePlus | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_SpeedAllowanceMinus | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_ConsumptionAllowancePlus | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_ConsumptionAllowanceMinus | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_MinHoursAllowance | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_MaxHoursAllowance | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_MinFOAllowance | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_MaxFOAllowance | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_HoursDiff | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_DiffFO | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_BallastAssessmentStatus }}</td>
+              <td>{{item.ballastTimeFO_DiffDaysToBeUsed | number:'1.0-1'}}</td>
+              <td>{{item.ballastTimeFO_DiffFOToBeUsed | number:'1.0-1'}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <td colspan="22">
+            <mfBootstrapPaginator style="background-color: pagination-bg" [rowsOnPageSet]="[6,12,60]"></mfBootstrapPaginator>
+          </td>
+        </tfoot>
+      </table>
+    </tab>
+
+
+
+
+
+
+    <!-- _____________________________________________________TAB 8-->
+    <tab heading="At Sea Gas Oil">
+      <table class="table table-dark table-bordered table-hover " [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="6" style="color: skyblue;">
+        <thead class="thead-light">
+          <tr class="headXSheet">
+            <td colspan="13"> {{poolName}} - 2018 - 1 Premium & Penalty Calculation</td>
+          </tr>
+          <tr class="headTable">
+            <td colspan="13">
+              <h4>At Sea Gas Oil</h4>
+            </td>
+            <!--
+          <td>
+            <i class="icons font-2xl d-block cui-calendar"><span>To : <input type="date" /></span></i>
+            <i class="icons font-2xl d-block cui-calendar"><span>From : <input type="date" /></span></i>
+        </td>
+         -->
+          </tr>
+          <tr>
+           <!--
+              <td colspan="13">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"><span class="TrbFont"> All :</span></i></span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search..." />
+              </div>
+            </td>
+           -->
+          </tr>
+          <tr>
+            <th rowspan="3">
+              <mfDefaultSorter by="vesselName">Vessel 
+              </mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Entry Into The Pool </mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Exit From The Pool</mfDefaultSorter>
+            </th>
+            <th colspan="10" style="text-align: center;">At Sea</th>
+          </tr>
+          <tr>
+            <th colspan="2" rowspan="1">Actual</th>
+            <th>PPS</th>
+            <th colspan="4" rowspan="1">Allowence</th>
+            <th rowspan="2">Difference</th>
+            <th rowspan="2">Assessment Status</th>
+            <th rowspan="2">To Be Used</th>
+          </tr>
+          <tr>
+            <th colspan="1" rowspan="1">Hours</th>
+            <th colspan="1" rowspan="1">GO</th>
+            <th colspan="1" rowspan="1">GO/HOUR</th>
+            <th colspan="1" rowspan="1">+ 5%</th>
+            <th colspan="1" rowspan="1">- 5%</th>
+            <th colspan="1" rowspan="1">MIN</th>
+            <th colspan="1" rowspan="1">MAX</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of mf.data">
+            <tr>
+              <td>{{item.vesselName}}</td>
+              <td>{{item.entryDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.exitDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.asCons_AtSeaHours | number:'1.0-1' }}</td>
+              <td>{{item.asCons_AtSeaGO | number:'1.0-1'}}</td>
+              <td>{{item.atSea_HourlyGOPPS | number:'1.0-1'}}</td>
+              <td>{{item.atSea_GOAllowancePlus | number: '1.0-1'}}</td>
+              <td>{{item.atSea_GOAllowanceMinus | number: '1.0-1'}}</td>
+              <td>{{item.atSea_MinGOAllowance | number:'1.0-1'}}</td>
+              <td>{{item.atSea_MaxGOAllowance | number:'1.0-1'}}</td>
+              <td>{{item.atSea_GODiff | number:'1.0-1'}}</td>
+              <td>{{item.consPPS_AtSeaAssessmentStatus }}</td>
+              <td>{{item.atSea_GODiffToBeUsed | number:'1.0-1'}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <td colspan="22">
+            <mfBootstrapPaginator style="background-color: pagination-bg" [rowsOnPageSet]="[6,12,60]"></mfBootstrapPaginator>
+          </td>
+        </tfoot>
+      </table>
+    </tab>
+
+
+
+
+
+
+    <!--______________________________________________________________TAB 9-->
+    <tab heading="Over / Under Allowed Consumption">
+      <table class="table table-dark table-bordered table-hover " [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="6" style="color: skyblue;">
+        <thead class="thead-light">
+          <tr class="headXSheet">
+            <td colspan="15"> {{poolName}} - 2018 - 1 Premium & Penalty Calculation</td>
+          </tr>
+          <tr class="headTable">
+            <td colspan="15">
+              <h4>Over / Under Allowed Consumption</h4>
+            </td>
+            <!--
+          <td>
+            <i class="icons font-2xl d-block cui-calendar"><span>To : <input type="date" /></span></i>
+            <i class="icons font-2xl d-block cui-calendar"><span>From : <input type="date" /></span></i>
+        </td>
+         -->
+          </tr>
+          <tr>
+           <!--
+              <td colspan="15">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"><span class="TrbFont"> All :</span></i></span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search..." />
+              </div>
+            </td>
+           -->
+          </tr>
+          <tr>
+            <th rowspan="2">
+              <mfDefaultSorter by="vesselName">Vessel
+              </mfDefaultSorter>
+            </th>
+            <th rowspan="2">
+              <mfDefaultSorter by="">Entry Into The Pool</mfDefaultSorter>
+            </th>
+            <th rowspan="2">
+              <mfDefaultSorter by="">Exit From The Pool</mfDefaultSorter>
+            </th>
+            <th colspan="2" style="text-align: center;">Ballast</th>
+            <th colspan="2">Laden</th>
+            <th colspan="2">Loading</th>
+            <th colspan="2">Discharging</th>
+            <th>At Sea</th>
+            <th colspan="3">Totals</th>
+          </tr>
+          <tr>
+            <th>Days</th>
+            <th>FO</th>
+            <th>Days</th>
+            <th>FO</th>
+            <th>FO</th>
+            <th>MGO</th>
+            <th>FO</th>
+            <th>MGO</th>
+            <th>MGO</th>
+            <th>FO</th>
+            <th>MGO</th>
+            <th>Days</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of mf.data">
+            <tr>
+              <td>{{item.vesselName}}</td>
+              <td>{{item.entryDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.exitDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.ballastTimeFO_DiffDaysToBeUsed | number:'1.0-1' }}</td>
+              <td>{{item.ballastTimeFO_DiffFOToBeUsed | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_DiffDaysToBeUsed | number:'1.0-1'}}</td>
+              <td>{{item.ladenTimeFO_DiffFOToBeUsed | number: '1.0-1'}}</td>
+              <td>{{item.portFO_LoadingFODiffToBeUsed | number: '1.0-1'}}</td>
+              <td>{{item.portGO_LoadingGODiffToBeUsed | number:'1.0-1'}}</td>
+              <td>{{item.portFO_DischargingFODiffToBeUsed | number:'1.0-1'}}</td>
+              <td>{{item.portGO_DischargingGODiffToBeUsed | number:'1.0-1'}}</td>
+              <td>{{item.atSea_GODiffToBeUsed | number:'1.0-1'}}</td>
+              <td>{{item.ouCons_TotalFO | number:'1.0-1'}}</td>
+              <td>{{item.ouCons_TotalGO | number:'1.0-1'}}</td>
+              <td>{{item.ouCons_TotalDays | number:'1.0-1'}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <td colspan="15">
+            <mfBootstrapPaginator style="background-color: pagination-bg" [rowsOnPageSet]="[6,12,60]"></mfBootstrapPaginator>
+          </td>
+        </tfoot>
+      </table>
+    </tab>
+
+
+
+    <!--______________________________________________________________TAB 10-->
+    <tab heading="Premiums or Panalties Units">
+      <table class="table table-dark table-bordered table-hover " [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="6" style="color: skyblue;">
+        <thead class="thead-light">
+          <tr class="headXSheet">
+            <td colspan="16"> {{poolName}} - 2018 - 1 Premium & Penalty Calculation</td>
+          </tr>
+          <tr class="headTable">
+            <td colspan="16">
+              <h4>Vessel's Quotes & Balances ( Units )</h4>
+            </td>
+            <!--
+        <td>
+          <i class="icons font-2xl d-block cui-calendar"><span>To : <input type="date" /></span></i>
+          <i class="icons font-2xl d-block cui-calendar"><span>From : <input type="date" /></span></i>
+      </td>
+       -->
+          </tr>
+          <tr>
+           <!--
+              <td colspan="16">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"><span class="TrbFont"> All :</span></i></span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search..." />
+              </div>
+            </td>
+           -->
+          </tr>
+          <tr>
+            <th rowspan="2">
+              <mfDefaultSorter by="vesselName">Vessel
+              </mfDefaultSorter>
+            </th>
+            <th rowspan="2">
+              <mfDefaultSorter by="">Entry Into The Pool</mfDefaultSorter>
+            </th>
+            <th rowspan="2">
+              <mfDefaultSorter by="">Exit From The Pool</mfDefaultSorter>
+            </th>
+            <th style="text-align: center;">Total</th>
+            <th colspan="4">FO</th>
+            <th colspan="4">GO</th>
+            <th colspan="4">Time</th>
+          </tr>
+          <tr>
+            <th>Days</th>
+            <th> Total FO Difference</th>
+            <th>Daly Quote</th>
+            <th>Vessel Quote</th>
+            <th>Vessel Balance</th>
+            <th>Tota GO Difference</th>
+            <th>Daily Quote</th>
+            <th>Vessel Quote</th>
+            <th>Vessel Bala</th>
+            <th>Total Time Difference</th>
+            <th>Daily Quote</th>
+            <th>Vessel Quote</th>
+            <th>Vessel Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of mf.data">
+            <tr>
+              <td>{{item.vesselName}}</td>
+              <td>{{item.entryDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.exitDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.poolDays | number:'1.0-1' }}</td>
+              <td>{{item.ouCons_TotalFO | number:'1.0-1'}}</td>
+              <td>{{-0.151309 | number:'1.0-1'}}</td>
+              <td>{{item.pnpUnits_FOVesselQuote | number: '1.0-1'}}</td>
+              <td>{{item.pnpUnits_FOVesselBalance | number: '1.0-1'}}</td>
+              <td>{{item.ouCons_TotalGO | number:'1.0-1'}}</td>
+              <td>{{0.004544 | number:'1.0-1'}}</td>
+              <td>{{item.pnpUnits_GOVesselQuote | number:'1.0-1'}}</td>
+              <td>{{item.pnpUnits_GOVesselBalance | number:'1.0-1'}}</td>
+              <td>{{item.ouCons_TotalDays | number:'1.0-1'}}</td>
+              <td>{{0.000966 | number:'1.0-1'}}</td>
+              <td>{{item.pnpUnits_TimeVesselQuote | number:'1.0-1'}}</td>
+              <td>{{item.pnpUnits_TimeVesselBalance | number:'1.0-1'}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <td colspan="16">
+            <mfBootstrapPaginator style="background-color: pagination-bg" [rowsOnPageSet]="[6,12,60]"></mfBootstrapPaginator>
+          </td>
+        </tfoot>
+      </table>
+    </tab>
+
+
+
+
+    <!--______________________________________________________________TAB 11-->
+    <tab heading="Premiums or Panalties Values">
+      <table class="table table-dark table-bordered table-hover " [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="6" style="color: skyblue;">
+        <thead class="thead-light">
+          <tr class="headXSheet">
+            <td colspan="14"> {{poolName}} - 2018 - 1 Premium & Penalty Calculation</td>
+          </tr>
+          <tr class="headTable">
+            <td colspan="14">
+              <h4>Vessel's Contribution ( Values )</h4>
+            </td>
+            <!--
+        <td>
+          <i class="icons font-2xl d-block cui-calendar"><span>To : <input type="date" /></span></i>
+          <i class="icons font-2xl d-block cui-calendar"><span>From : <input type="date" /></span></i>
+      </td>
+       -->
+          </tr>
+          <tr>
+            <!--
+              <td colspan="14">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-search"><span class="TrbFont"> All :</span></i></span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search..." />
+              </div>
+            </td>
+            -->
+          </tr>
+          <tr>
+            <th rowspan="3">
+              <mfDefaultSorter by="vesselName">Vessel
+              </mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Entry Into The Pool</mfDefaultSorter>
+            </th>
+            <th rowspan="3">
+              <mfDefaultSorter by="">Exit From The Pool</mfDefaultSorter>
+            </th>
+            <th rowspan="2" style="text-align: center;">Total</th>
+            <th colspan="3">Vessel Balance ( Units )</th>
+            <th colspan="3">Unit's Value</th>
+            <th colspan="3">Vessel Balance ( Value )</th>
+            <th rowspan="2">Total Vessel Premium or Penalty</th>
+          </tr>
+          <tr>
+            <th>FO</th>
+            <th>GO</th>
+            <th>Time</th>
+            <th>FO (*)</th>
+            <th>GO (**)</th>
+            <th>Time (***)</th>
+            <th>FO</th>
+            <th>GO</th>
+            <th>Time</th>
+          </tr>
+          <tr>
+            <th>Days</th>
+            <th colspan="2">MIT</th>
+            <th>Days</th>
+            <th colspan="7">$</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of mf.data">
+            <tr>
+              <td>{{item.vesselName}}</td>
+              <td>{{item.entryDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.exitDate | date:'yyyy-MM-dd'}}</td>
+              <td>{{item.poolDays | number:'1.0-1' }}</td>
+              <td>{{item.pnpUnits_FOVesselBalance | number:'1.0-1'}}</td>
+              <td>{{item.pnpUnits_GOVesselBalance | number:'1.0-1'}}</td>
+              <td>{{item.pnpUnits_TimeVesselBalance | number: '1.0-1'}}</td>
+              <td>{{403.15 | number: '1.0-1'}}</td>
+              <td>{{639.44 | number:'1.0-1'}}</td>
+              <td>{{12801.00 | number:'1.0-1'}}</td>
+              <td>{{item.pnpValues_FOVesselBalance | number:'1.0-1'}}</td>
+              <td>{{item.pnpValues_GOVesselBalance | number:'1.0-1'}}</td>
+              <td>{{item.pnpValues_TimeVesselBalance | number:'1.0-1'}}</td>
+              <td>{{item.pnpValues_TotalVesselPorP | number:'1.0-1'}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <td colspan="14">
+            <mfBootstrapPaginator style="background-color: pagination-bg" [rowsOnPageSet]="[6,12,60]"></mfBootstrapPaginator>
+          </td>
+        </tfoot>
+      </table>
+    </tab>
+    <!--
+      <tab heading="Overview">
+
+    </tab>
+     -->
+  </tabset>
+</div>

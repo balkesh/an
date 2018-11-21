@@ -1,0 +1,59 @@
+<!--Character encoding -->
+<meta charset="utf-8">
+<!-- Page Header -->
+<app-login-header></app-login-header>
+<!-- Main Body -->
+<div class="app-body">
+  <!-- Main content -->
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="card-group">
+            <div class="card p-4 logInCard">
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-6">
+                      <h1 class="text-muted">Login</h1>
+                    </div>
+                    <ng-template #popTemplate>
+                      <div class="popOverTml" [innerHtml]="html"></div>
+                    </ng-template>
+                    <button id="popOverBtn" class="app-popovers btn btn-default btn-secondary" placement="auto"
+                            [popover]="popTemplate" popoverTitle={{title}} type="button">
+                      <i class="help app-icons fa fa-info fa-lg mt-4"></i>
+                    </button>
+                  </div>
+                  <p class="text-muted">Enter your credentials</p>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Username" autocomplete="username" required>
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Password" autocomplete="current-password"
+                           required>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <button type="button" class="btn btn-primary px-4">Login</button>
+                    </div>
+                    <div class="wrongPass col-6 alert alert-danger">
+                      <p class="errorP">Username or password is wrong. Please make sure your credentials are
+                        correct.</p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
